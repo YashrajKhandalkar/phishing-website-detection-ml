@@ -47,7 +47,7 @@ The classifier uses only features derived from the URL text; it never opens the 
 Requires Python 3.11+ and an internet connection for the first dataset download.
 
 ```bash
-git clone https://github.com/<your-username>/phishing-website-detection-ml.git
+git clone https://github.com/YashrajKhandalkar/phishing-website-detection-ml.git
 cd phishing-website-detection-ml
 ```
 
