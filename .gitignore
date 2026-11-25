@@ -1,0 +1,40 @@
+# Python environments
+.venv/
+venv/
+env/
+ENV/
+
+# Python cache and test output
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+
+# Local environment and secrets
+.env
+.env.*
+!.env.example
+.streamlit/secrets.toml
+
+# OS / editor files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Logs
+*.log
+
+# Downloaded dataset cache (re-download from the documented UCI source)
+data/*.csv
+
+# Generated model artifacts (created by src/train_model.py)
+artifacts/*
+!artifacts/.gitkeep
+
+# Generated charts and final report (created locally)
+reports/figures/*
+!reports/figures/.gitkeep
+reports/Project_Report_Final.docx
