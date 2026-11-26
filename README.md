@@ -11,8 +11,7 @@ Paste a website URL, and the app extracts 32 lexical/domain features from the UR
 
 > **Educational prototype, not a security product.** A prediction is not proof that a site is safe or malicious. Use trusted security tools and official channels to verify suspicious sites.
 
-<!-- Add after running the app: ![App screenshot](docs/images/app-screenshot.png) -->
-
+![App screenshot](docs/images/app-screenshot.png)
 ## Contents
 
 [Features](#features) · [How it works](#how-it-works) · [Quick start](#quick-start) · [Dataset](#dataset) · [Evaluation](#evaluation) · [Results](#results) · [Project structure](#project-structure) · [Webpage inspection and safety](#optional-webpage-inspection-and-safety) · [Limitations](#limitations) · [Contributing](#contributing) · [License](#license)
@@ -47,7 +46,7 @@ The classifier uses only features derived from the URL text; it never opens the 
 Requires Python 3.11+ and an internet connection for the first dataset download.
 
 ```bash
-git clone https://github.com/YashrajKhandalkar/phishing-website-detection-ml.git
+git clone https://github.com/<your-username>/phishing-website-detection-ml.git
 cd phishing-website-detection-ml
 ```
 
@@ -108,7 +107,14 @@ python scripts/results_to_markdown.py
 Paste the output below and add `reports/figures/confusion_matrix.png` to `docs/images/` if you want to show it.
 
 <!-- RESULTS_TABLE_START -->
-_Run the training script and paste the generated table here._
+| Model | CV F1 (mean) | Test accuracy | Precision (phishing) | Recall (phishing) | F1 (phishing) | ROC-AUC |
+|---|---:|---:|---:|---:|---:|---:|
+| **Decision Tree** (selected) | 0.9946 | 0.9958 | 0.9980 | 0.9921 | 0.9950 | 0.9963 |
+| Support Vector Machine (Linear SVM) | 0.9923 | 0.9939 | 0.9998 | 0.9858 | 0.9927 | 0.9961 |
+| Gaussian Naive Bayes | 0.9908 | 0.9930 | 0.9970 | 0.9864 | 0.9917 | 0.9965 |
+| Logistic Regression | 0.9900 | 0.9927 | 0.9947 | 0.9880 | 0.9913 | 0.9955 |
+
+Test metrics are computed on a hostname-disjoint hold-out split 
 <!-- RESULTS_TABLE_END -->
 
 ## Project structure
