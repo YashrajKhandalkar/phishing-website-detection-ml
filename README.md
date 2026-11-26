@@ -31,11 +31,11 @@ Paste a website URL, and the app extracts 32 lexical/domain features from the UR
 
 **Automatically extracted URL and domain features** (all 32 are computed from the URL text):
 
-![Extracted URL features](docs/images/Screenshot%202026-11-26%20100715.png)
+![Extracted URL features](docs/images/Screenshot%202026-11-26%20100735.png)
 
 **Optional webpage inspection**, a separate user-triggered action with a clear privacy notice:
 
-![Optional webpage inspection](docs/images/Screenshot%202026-11-26%20100735.png)
+![Optional webpage inspection](docs/images/Screenshot%202026-11-26%20100715.png)
 
 ## How it works
 
