@@ -11,10 +11,11 @@ Paste a website URL, and the app extracts 32 lexical/domain features from the UR
 
 > **Educational prototype, not a security product.** A prediction is not proof that a site is safe or malicious. Use trusted security tools and official channels to verify suspicious sites.
 
-![App screenshot](docs/images/app-screenshot.png)
+![App result page](docs/images/app-screenshot.png.png)
+
 ## Contents
 
-[Features](#features) · [How it works](#how-it-works) · [Quick start](#quick-start) · [Dataset](#dataset) · [Evaluation](#evaluation) · [Results](#results) · [Project structure](#project-structure) · [Webpage inspection and safety](#optional-webpage-inspection-and-safety) · [Limitations](#limitations) · [Contributing](#contributing) · [License](#license)
+[Features](#features) · [Screenshots](#screenshots) · [How it works](#how-it-works) · [Quick start](#quick-start) · [Dataset](#dataset) · [Evaluation](#evaluation) · [Results](#results) · [Project structure](#project-structure) · [Webpage inspection and safety](#optional-webpage-inspection-and-safety) · [Limitations](#limitations) · [Contributing](#contributing) · [License](#license)
 
 ## Features
 
@@ -25,6 +26,16 @@ Paste a website URL, and the app extracts 32 lexical/domain features from the UR
 - **Metrics and interpretation** - accuracy, phishing precision/recall/F1, ROC-AUC, confusion matrix, error analysis, permutation importance.
 - **Optional, separate page inspection** - user-triggered, SSRF-guarded HTML signals that never affect the prediction.
 - **Reproducible** - tests, CI, a notebook, a feature dictionary and a DOCX report generator.
+
+## Screenshots
+
+**Automatically extracted URL and domain features** (all 32 are computed from the URL text):
+
+![Extracted URL features](docs/images/Screenshot%202026-11-26%20100715.png)
+
+**Optional webpage inspection**, a separate user-triggered action with a clear privacy notice:
+
+![Optional webpage inspection](docs/images/Screenshot%202026-11-26%20100735.png)
 
 ## How it works
 
@@ -46,7 +57,7 @@ The classifier uses only features derived from the URL text; it never opens the 
 Requires Python 3.11+ and an internet connection for the first dataset download.
 
 ```bash
-git clone https://github.com/<your-username>/phishing-website-detection-ml.git
+git clone https://github.com/YashrajKhandalkar/phishing-website-detection-ml.git
 cd phishing-website-detection-ml
 ```
 
@@ -87,6 +98,7 @@ The project uses the raw **URL** column and the **label** from UCI PhiUSIIL Phis
 - UCI labels (`1` = legitimate, `0` = phishing) are converted to the project convention: **`1` = phishing, `0` = legitimate**.
 - Cleaning removes empty values, normalized duplicates and URLs that appear with conflicting labels; URLs that cannot be parsed are skipped.
 - The first training run downloads the data and caches a minimal `data/phiusiil_url_labels.csv`, which is excluded from Git.
+- If the automatic download is interrupted, download the CSV from the UCI page manually and save it as `data/phiusiil_url_labels.csv`; the loader reads its `URL` and `label` columns.
 - License: CC BY 4.0. Citation: Prasad, A. & Chandra, S. (2024). *PhiUSIIL Phishing URL (Website).* UCI Machine Learning Repository. https://doi.org/10.1016/j.cose.2023.103545
 
 ## Evaluation
@@ -98,13 +110,11 @@ The project uses the raw **URL** column and the **label** from UCI PhiUSIIL Phis
 
 ## Results
 
-Metrics depend on your dataset download and split, so none are hard-coded here. After training, generate the table from your own run:
+Results from one local training run (187,176 training and 46,794 test records). Exact numbers depend on your dataset download and split. To regenerate the table from your own run:
 
 ```bash
 python scripts/results_to_markdown.py
 ```
-
-Paste the output below and add `reports/figures/confusion_matrix.png` to `docs/images/` if you want to show it.
 
 <!-- RESULTS_TABLE_START -->
 | Model | CV F1 (mean) | Test accuracy | Precision (phishing) | Recall (phishing) | F1 (phishing) | ROC-AUC |
@@ -114,8 +124,10 @@ Paste the output below and add `reports/figures/confusion_matrix.png` to `docs/i
 | Gaussian Naive Bayes | 0.9908 | 0.9930 | 0.9970 | 0.9864 | 0.9917 | 0.9965 |
 | Logistic Regression | 0.9900 | 0.9927 | 0.9947 | 0.9880 | 0.9913 | 0.9955 |
 
-Test metrics are computed on a hostname-disjoint hold-out split 
+Test metrics are computed on a hostname-disjoint hold-out split (see [Evaluation](#evaluation)).
 <!-- RESULTS_TABLE_END -->
+
+These scores come from a benchmark dataset and are very high for every model; treat them as benchmark performance, not as a guarantee on real-world traffic (see [Limitations](#limitations)).
 
 ## Project structure
 
